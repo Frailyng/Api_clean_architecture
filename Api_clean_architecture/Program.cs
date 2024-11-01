@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Api_clean_architecture.Data;
+using Api_clean_architecture.Context;
 
 namespace Api_clean_architecture
 {
@@ -18,6 +19,8 @@ namespace Api_clean_architecture
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.
 
             var app = builder.Build();
 
