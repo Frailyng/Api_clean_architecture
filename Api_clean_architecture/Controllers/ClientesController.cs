@@ -12,7 +12,7 @@ namespace Api_clean_architecture.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClientesController(IClientesServices) : ControllerBase
+    public class ClientesController : ControllerBase
     {
         private readonly Api_clean_architectureContext _context;
 

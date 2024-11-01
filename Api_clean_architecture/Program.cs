@@ -20,7 +20,6 @@ namespace Api_clean_architecture
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.
 
             var app = builder.Build();
 

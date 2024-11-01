@@ -16,4 +16,11 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Tecnicos.Abstractions\Controllers\" />
+    <Folder Include="Areas\Tecnicos.Abstractions\Data\" />
+    <Folder Include="Areas\Tecnicos.Abstractions\Models\" />
+    <Folder Include="Areas\Tecnicos.Abstractions\Views\" />
+  </ItemGroup>
+
 </Project>
