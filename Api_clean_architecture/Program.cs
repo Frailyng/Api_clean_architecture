@@ -1,3 +1,6 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Api_clean_architecture.Data;
 
 namespace Api_clean_architecture
 {
@@ -6,6 +9,8 @@ namespace Api_clean_architecture
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddDbContext<Api_clean_architectureContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("Api_clean_architectureContext") ?? throw new InvalidOperationException("Connection string 'Api_clean_architectureContext' not found.")));
 
             // Add services to the container.
 
