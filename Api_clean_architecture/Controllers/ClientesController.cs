@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Api_clean_architecture.Data;
-using Api_clean_architecture.Modelos;
+using Tecnicos.Abstractions;
+using Tecnicos.Data.Models;
+using Tecnicos.Domain.DTO;
+
 
 namespace Api_clean_architecture.Controllers
 {
