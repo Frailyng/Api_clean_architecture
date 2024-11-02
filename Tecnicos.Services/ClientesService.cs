@@ -1,5 +1,5 @@
 ﻿using Api_clean_architecture.Context;
-using Api_clean_architecture.Modelos;
+using Tecnicos.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using Tecnicos.Abstractions;
