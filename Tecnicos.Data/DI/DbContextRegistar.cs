@@ -3,7 +3,7 @@ using Api_clean_architecture.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Tecnicos.Data.DI;
+namespace Tecnicos.Data.Context;
 
 public static class DbContextRegistar
 {

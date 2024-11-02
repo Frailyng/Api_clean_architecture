@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Tecnicos.Abstractions;
 using Tecnicos.Data.Models;
-using Tecnicos.Domain.DTO;
+using Tecnicos.Domain.DTOS;
 
 
 namespace Api_clean_architecture.Controllers
