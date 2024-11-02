@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Tecnicos.Abstractions;
-using Tecnicos.Data.DI;
+using Tecnicos.Data.Context;
 
 namespace Tecnicos.Services.DI;
 
