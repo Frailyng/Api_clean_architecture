@@ -1,6 +1,4 @@
-﻿using Api_clean_architecture.DIS;
-
-namespace Api_clean_architecture.DI;
+﻿namespace Api_clean_architecture.DI;
 
 public static class ServicesRegistrar
 {
