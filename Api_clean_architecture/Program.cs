@@ -1,12 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Tecnicos.Services.DI;
 
-namespace Api_clean_architecture
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
+
            var builder = WebApplication.CreateBuilder(args);
             /*builder.Services.AddDbContext<Api_clean_architectureContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Api_clean_architectureContext") ?? throw new InvalidOperationException("Connection string 'Api_clean_architectureContext' not found.")));*/
@@ -17,6 +11,9 @@ namespace Api_clean_architecture
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            //Inyeccion del contexto
+            builder.Services.RegisterServices();
 
 
             var app = builder.Build();
@@ -36,6 +33,3 @@ namespace Api_clean_architecture
             app.MapControllers();
 
             app.Run();
-        }
-    }
-}

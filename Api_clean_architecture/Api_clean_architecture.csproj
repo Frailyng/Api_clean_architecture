@@ -16,4 +16,11 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Tecnicos.Abstractions\Tecnicos.Abstractions.csproj" />
+    <ProjectReference Include="..\Tecnicos.Data\Tecnicos.Data.csproj" />
+    <ProjectReference Include="..\Tecnicos.Domain\Tecnicos.Domain.csproj" />
+    <ProjectReference Include="..\Tecnicos.Services\Tecnicos.Services.csproj" />
+  </ItemGroup>
+
 </Project>
