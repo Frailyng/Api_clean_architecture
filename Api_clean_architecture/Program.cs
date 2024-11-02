@@ -1,11 +1,9 @@
+﻿using Tecnicos.Services.DI;
 
-namespace Api_clean_architecture
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            var builder = WebApplication.CreateBuilder(args);
+
+           var builder = WebApplication.CreateBuilder(args);
+            /*builder.Services.AddDbContext<Api_clean_architectureContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("Api_clean_architectureContext") ?? throw new InvalidOperationException("Connection string 'Api_clean_architectureContext' not found.")));*/
 
             // Add services to the container.
 
@@ -14,14 +12,18 @@ namespace Api_clean_architecture
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            //Inyeccion del contexto
+            builder.Services.RegisterServices();
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
+           /* if (app.Environment.IsDevelopment())
+            {*/
                 app.UseSwagger();
                 app.UseSwaggerUI();
-            }
+           // }
 
             app.UseHttpsRedirection();
 
@@ -31,6 +33,3 @@ namespace Api_clean_architecture
             app.MapControllers();
 
             app.Run();
-        }
-    }
-}

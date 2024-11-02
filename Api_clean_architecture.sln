@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api_clean_architecture", "Api_clean_architecture\Api_clean_architecture.csproj", "{3EC4EFA0-C08C-4C36-9A29-05BF3511E92E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api_clean_architecture", "Api_clean_architecture\Api_clean_architecture.csproj", "{3EC4EFA0-C08C-4C36-9A29-05BF3511E92E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tecnicos.Abstractions", "Tecnicos.Abstractions\Tecnicos.Abstractions.csproj", "{3BBBD01D-7A8B-4670-BCBC-17075B33828B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tecnicos.Data", "Tecnicos.Data\Tecnicos.Data.csproj", "{35939343-C746-4024-9B80-265658767A5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tecnicos.Domain", "Tecnicos.Domain\Tecnicos.Domain.csproj", "{9DA471C6-98FC-4ADB-A947-CA31FE31F66A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tecnicos.Services", "Tecnicos.Services\Tecnicos.Services.csproj", "{42C76DBE-4F72-429C-92BB-DDFECAF63F93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{3EC4EFA0-C08C-4C36-9A29-05BF3511E92E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EC4EFA0-C08C-4C36-9A29-05BF3511E92E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EC4EFA0-C08C-4C36-9A29-05BF3511E92E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BBBD01D-7A8B-4670-BCBC-17075B33828B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BBBD01D-7A8B-4670-BCBC-17075B33828B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BBBD01D-7A8B-4670-BCBC-17075B33828B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BBBD01D-7A8B-4670-BCBC-17075B33828B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35939343-C746-4024-9B80-265658767A5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35939343-C746-4024-9B80-265658767A5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35939343-C746-4024-9B80-265658767A5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35939343-C746-4024-9B80-265658767A5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DA471C6-98FC-4ADB-A947-CA31FE31F66A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DA471C6-98FC-4ADB-A947-CA31FE31F66A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DA471C6-98FC-4ADB-A947-CA31FE31F66A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DA471C6-98FC-4ADB-A947-CA31FE31F66A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42C76DBE-4F72-429C-92BB-DDFECAF63F93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42C76DBE-4F72-429C-92BB-DDFECAF63F93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42C76DBE-4F72-429C-92BB-DDFECAF63F93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42C76DBE-4F72-429C-92BB-DDFECAF63F93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
