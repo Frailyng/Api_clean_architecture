@@ -17,10 +17,12 @@
 
 
             var app = builder.Build();
+            // Redirigir la raíz a la ruta de Swagger
+            app.MapGet("/", () => Results.Redirect("/swagger/index.html"));
 
             // Configure the HTTP request pipeline.
-           /* if (app.Environment.IsDevelopment())
-            {*/
+            /* if (app.Environment.IsDevelopment())
+           {*/
                 app.UseSwagger();
                 app.UseSwaggerUI();
            // }

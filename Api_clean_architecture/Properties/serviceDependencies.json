@@ -1,8 +1,12 @@
 {
   "dependencies": {
+    "apis1": {
+      "type": "apis"
+    },
     "mssql1": {
       "type": "mssql",
-      "connectionId": "ConnectionStrings:Api_clean_architectureContext"
+      "connectionId": "ConnectionStrings:Api_clean_architectureContext",
+      "dynamicId": null
     }
   }
 }
