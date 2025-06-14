@@ -2,7 +2,7 @@
 
 public class ClientesDto
 {
-    public int ClienteId { get; set; }
-    public string? Nombres { get; set; }
-    public string? WhatsApp { get; set; }
+    public int CompraId { get; set; }
+    public string? Descripcion { get; set; }
+    public Double Monto { get; set; }
 }

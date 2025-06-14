@@ -1,4 +1,7 @@
-﻿using Tecnicos.Services.DI;
+﻿using Api_clean_architecture.Context;
+using Microsoft.EntityFrameworkCore;
+using Tecnicos.Data.Context;
+using Tecnicos.Services.DI;
 
 
            var builder = WebApplication.CreateBuilder(args);
@@ -12,11 +15,21 @@
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            //Inyeccion del contexto
-            builder.Services.RegisterServices();
+        // Carga la configuración
+        builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+
+        // Registra el DbContextFactory
+        builder.Services.RegisterDbContextFactory(builder.Configuration);
+
+            builder.Services.AddDbContextFactory<TecnicosContext>(o => 
+            o.UseSqlServer(builder.Configuration.GetConnectionString("SqlConStr"))
+            );
+
+                        // Inyección del contexto
+            builder.Services.RegisterServices(builder.Configuration);
 
 
-            var app = builder.Build();
+var app = builder.Build();
             // Redirigir la raíz a la ruta de Swagger
             app.MapGet("/", () => Results.Redirect("/swagger/index.html"));
 

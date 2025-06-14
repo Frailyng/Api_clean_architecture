@@ -5,10 +5,9 @@ namespace Tecnicos.Abstractions;
 
 public interface IClientesService
 {
-    Task<bool> Guardar(ClientesDto cliente);
-    Task<bool> Eliminar(int clienteId);
-    Task<ClientesDto> Buscar(int id);
-    Task<List<ClientesDto>> Listar(Expression<Func<ClientesDto, bool>> criterio);
-    Task<bool> ExisteCliente(int id, string nombres, string whatsapp);
-
+    Task<bool> Guardar(ClientesDto cliente, CancellationToken cancellationToken = default);
+    Task<bool> Eliminar(int clienteId, CancellationToken cancellationToken = default);
+    Task<ClientesDto> Buscar(int id, CancellationToken cancellationToken = default);
+    Task<List<ClientesDto>> Listar(Expression<Func<ClientesDto, bool>> criterio, CancellationToken cancellationToken = default);
+    Task<bool> ExisteCliente(int id, string descripcion, double monto, CancellationToken cancellationToken = default);
 }

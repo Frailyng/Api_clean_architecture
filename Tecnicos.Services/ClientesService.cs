@@ -9,97 +9,95 @@ namespace Tecnicos.Services;
 
 public class ClientesService(IDbContextFactory<TecnicosContext> DbFactory) : IClientesService
 {
-    private async Task<bool> Existe(int ClienteId)
+    private async Task<bool> Existe(int CompraId, CancellationToken cancellationToken = default)
     {
-        await using var contexto = await DbFactory.CreateDbContextAsync();
-        return await contexto.Clientes.AnyAsync(e => e.ClienteId == ClienteId);
+        await using var contexto = await DbFactory.CreateDbContextAsync(cancellationToken);
+        return await contexto.Clientes.AnyAsync(e => e.CompraId == CompraId, cancellationToken);
     }
 
-    private async Task<bool> Insertar(ClientesDto clienteDto)
+    private async Task<bool> Insertar(ClientesDto clienteDto, CancellationToken cancellationToken = default)
     {
-        await using var contexto = await DbFactory.CreateDbContextAsync();
+        await using var contexto = await DbFactory.CreateDbContextAsync(cancellationToken);
         var cliente = new Clientes()
         {
-            Nombres = clienteDto.Nombres,
-            WhatsApp = clienteDto.WhatsApp
+            Descripcion = clienteDto.Descripcion,
+            Monto = clienteDto.Monto
         };
         contexto.Clientes.Add(cliente);
-        var guardo = await contexto.SaveChangesAsync() > 0;
-        clienteDto.ClienteId = cliente.ClienteId;
+        var guardo = await contexto.SaveChangesAsync(cancellationToken) > 0;
+        clienteDto.CompraId = cliente.CompraId; // Ajuste para asignar el nuevo ID
         return guardo;
     }
 
-    private async Task<bool> Modificar(ClientesDto clienteDto)
+    private async Task<bool> Modificar(ClientesDto clienteDto, CancellationToken cancellationToken = default)
     {
-        await using var contexto = await DbFactory.CreateDbContextAsync();
+        await using var contexto = await DbFactory.CreateDbContextAsync(cancellationToken);
         var cliente = new Clientes()
         {
-            ClienteId = clienteDto.ClienteId,
-            Nombres = clienteDto.Nombres,
-            WhatsApp = clienteDto.WhatsApp
+            CompraId = clienteDto.CompraId,
+            Descripcion = clienteDto.Descripcion,
+            Monto = clienteDto.Monto
         };
         contexto.Update(cliente);
-        var modificado = await contexto.SaveChangesAsync() > 0;
+        var modificado = await contexto.SaveChangesAsync(cancellationToken) > 0;
         return modificado;
     }
 
-    public async Task<bool> Guardar(ClientesDto cliente)
+    public async Task<bool> Guardar(ClientesDto cliente, CancellationToken cancellationToken = default)
     {
-        if (!await Existe(cliente.ClienteId))
+        if (!await Existe(cliente.CompraId, cancellationToken))
         {
-            return await Insertar(cliente);
+            return await Insertar(cliente, cancellationToken);
         }
         else
         {
-            return await Modificar(cliente);
+            return await Modificar(cliente, cancellationToken);
         }
     }
 
-    public async Task<bool> Eliminar(int ClienteId)
+    public async Task<bool> Eliminar(int CompraId, CancellationToken cancellationToken = default)
     {
-        await using var contexto = await DbFactory.CreateDbContextAsync();
+        await using var contexto = await DbFactory.CreateDbContextAsync(cancellationToken);
         return await contexto.Clientes
-            .Where(e => e.ClienteId == ClienteId)
-            .ExecuteDeleteAsync() > 0;
+            .Where(e => e.CompraId == CompraId)
+            .ExecuteDeleteAsync(cancellationToken) > 0;
     }
 
-    public async Task<ClientesDto> Buscar(int id)
+    public async Task<ClientesDto> Buscar(int id, CancellationToken cancellationToken = default)
     {
-        await using var contexto = await DbFactory.CreateDbContextAsync();
+        await using var contexto = await DbFactory.CreateDbContextAsync(cancellationToken);
         var cliente = await contexto.Clientes
-            .Where(e => e.ClienteId ==  id)
+            .Where(e => e.CompraId == id)
             .Select(p => new ClientesDto()
             {
-                ClienteId = p.ClienteId,
-                Nombres = p.Nombres,
-                WhatsApp = p.WhatsApp
-            }).FirstOrDefaultAsync();
+                CompraId = p.CompraId,
+                Descripcion = p.Descripcion,
+                Monto = p.Monto
+            }).FirstOrDefaultAsync(cancellationToken);
 
         return cliente ?? new ClientesDto();
     }
 
-    public async Task<List<ClientesDto>> Listar(Expression<Func<ClientesDto, bool>> criterio)
+    public async Task<List<ClientesDto>> Listar(Expression<Func<ClientesDto, bool>> criterio, CancellationToken cancellationToken = default)
     {
-        await using var contexto = await DbFactory.CreateDbContextAsync();
+        await using var contexto = await DbFactory.CreateDbContextAsync(cancellationToken);
         return await contexto.Clientes
             .Select(p => new ClientesDto()
             {
-                ClienteId = p.ClienteId,
-                Nombres = p.Nombres,
-                WhatsApp = p.WhatsApp
+                CompraId = p.CompraId,
+                Descripcion = p.Descripcion,
+                Monto = p.Monto
             })
             .Where(criterio)
-            .ToListAsync();
+            .ToListAsync(cancellationToken);
     }
 
-    public async Task<bool> ExisteCliente(int id, string nombres, string whatsapp)
+    public async Task<bool> ExisteCliente(int id, string descripcion, double monto, CancellationToken cancellationToken = default)
     {
-        await using var contexto = await DbFactory.CreateDbContextAsync();
+        await using var contexto = await DbFactory.CreateDbContextAsync(cancellationToken);
         return await contexto.Clientes
-            .AnyAsync(e => e.ClienteId != id
-            && e.Nombres.ToLower().Equals(nombres.ToLower())
-            || e.WhatsApp.ToLower().Equals(whatsapp.ToLower()));
+            .AnyAsync(e => e.CompraId != id
+            && e.Descripcion.ToLower().Equals(descripcion.ToLower())
+            || e.Monto == monto, cancellationToken);
     }
-
-
 }
