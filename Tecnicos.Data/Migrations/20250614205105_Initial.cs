@@ -13,7 +13,7 @@ namespace Tecnicos.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Clientes",
+                name: "Compras",
                 columns: table => new
                 {
                     CompraId = table.Column<int>(type: "int", nullable: false)
@@ -23,11 +23,11 @@ namespace Tecnicos.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Clientes", x => x.CompraId);
+                    table.PrimaryKey("PK_Compras", x => x.CompraId);
                 });
 
             migrationBuilder.InsertData(
-                table: "Clientes",
+                table: "Compras",
                 columns: new[] { "CompraId", "Descripcion", "Monto" },
                 values: new object[,]
                 {
@@ -41,7 +41,7 @@ namespace Tecnicos.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Clientes");
+                name: "Compras");
         }
     }
 }

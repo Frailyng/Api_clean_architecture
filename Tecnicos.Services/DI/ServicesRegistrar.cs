@@ -11,7 +11,7 @@ public static class ServicesRegistrar
     public static IServiceCollection RegisterServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.RegisterDbContextFactory(configuration);
-        services.AddScoped<IClientesService, ClientesService>();
+        services.AddScoped<IComprasService, ComprasService>();
         return services;
     }
 }

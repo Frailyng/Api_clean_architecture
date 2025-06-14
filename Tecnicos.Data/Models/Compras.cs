@@ -2,7 +2,7 @@
 
 namespace Tecnicos.Data.Models;
 
-public class Clientes
+public class Compras
 {
     [Key]
     public int CompraId { get; set; }

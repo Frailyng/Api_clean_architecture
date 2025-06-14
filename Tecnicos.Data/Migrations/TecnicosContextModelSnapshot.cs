@@ -21,7 +21,7 @@ namespace Tecnicos.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Tecnicos.Data.Models.Clientes", b =>
+            modelBuilder.Entity("Tecnicos.Data.Models.Compras", b =>
                 {
                     b.Property<int>("CompraId")
                         .ValueGeneratedOnAdd()
@@ -39,7 +39,7 @@ namespace Tecnicos.Data.Migrations
 
                     b.HasKey("CompraId");
 
-                    b.ToTable("Clientes", (string)null);
+                    b.ToTable("Compras", (string)null);
 
                     b.HasData(
                         new

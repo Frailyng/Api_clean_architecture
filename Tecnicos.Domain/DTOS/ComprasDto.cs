@@ -1,6 +1,6 @@
 ﻿namespace Tecnicos.Domain.DTOS;
 
-public class ClientesDto
+public class ComprasDto
 {
     public int CompraId { get; set; }
     public string? Descripcion { get; set; }

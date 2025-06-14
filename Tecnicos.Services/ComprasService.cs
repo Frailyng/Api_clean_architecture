@@ -7,82 +7,82 @@ using Tecnicos.Domain.DTOS;
 
 namespace Tecnicos.Services;
 
-public class ClientesService(IDbContextFactory<TecnicosContext> DbFactory) : IClientesService
+public class ComprasService(IDbContextFactory<TecnicosContext> DbFactory) : IComprasService
 {
     private async Task<bool> Existe(int CompraId, CancellationToken cancellationToken = default)
     {
         await using var contexto = await DbFactory.CreateDbContextAsync(cancellationToken);
-        return await contexto.Clientes.AnyAsync(e => e.CompraId == CompraId, cancellationToken);
+        return await contexto.Compras.AnyAsync(e => e.CompraId == CompraId, cancellationToken);
     }
 
-    private async Task<bool> Insertar(ClientesDto clienteDto, CancellationToken cancellationToken = default)
+    private async Task<bool> Insertar(ComprasDto compraDto, CancellationToken cancellationToken = default)
     {
         await using var contexto = await DbFactory.CreateDbContextAsync(cancellationToken);
-        var cliente = new Clientes()
+        var compra = new Compras()
         {
-            Descripcion = clienteDto.Descripcion,
-            Monto = clienteDto.Monto
+            Descripcion = compraDto.Descripcion,
+            Monto = compraDto.Monto
         };
-        contexto.Clientes.Add(cliente);
+        contexto.Compras.Add(compra);
         var guardo = await contexto.SaveChangesAsync(cancellationToken) > 0;
-        clienteDto.CompraId = cliente.CompraId; // Ajuste para asignar el nuevo ID
+        compraDto.CompraId = compra.CompraId; // Ajuste para asignar el nuevo ID
         return guardo;
     }
 
-    private async Task<bool> Modificar(ClientesDto clienteDto, CancellationToken cancellationToken = default)
+    private async Task<bool> Modificar(ComprasDto compraDto, CancellationToken cancellationToken = default)
     {
         await using var contexto = await DbFactory.CreateDbContextAsync(cancellationToken);
-        var cliente = new Clientes()
+        var cliente = new Compras()
         {
-            CompraId = clienteDto.CompraId,
-            Descripcion = clienteDto.Descripcion,
-            Monto = clienteDto.Monto
+            CompraId = compraDto.CompraId,
+            Descripcion = compraDto.Descripcion,
+            Monto = compraDto.Monto
         };
         contexto.Update(cliente);
         var modificado = await contexto.SaveChangesAsync(cancellationToken) > 0;
         return modificado;
     }
 
-    public async Task<bool> Guardar(ClientesDto cliente, CancellationToken cancellationToken = default)
+    public async Task<bool> Guardar(ComprasDto compra, CancellationToken cancellationToken = default)
     {
-        if (!await Existe(cliente.CompraId, cancellationToken))
+        if (!await Existe(compra.CompraId, cancellationToken))
         {
-            return await Insertar(cliente, cancellationToken);
+            return await Insertar(compra, cancellationToken);
         }
         else
         {
-            return await Modificar(cliente, cancellationToken);
+            return await Modificar(compra, cancellationToken);
         }
     }
 
     public async Task<bool> Eliminar(int CompraId, CancellationToken cancellationToken = default)
     {
         await using var contexto = await DbFactory.CreateDbContextAsync(cancellationToken);
-        return await contexto.Clientes
+        return await contexto.Compras
             .Where(e => e.CompraId == CompraId)
             .ExecuteDeleteAsync(cancellationToken) > 0;
     }
 
-    public async Task<ClientesDto> Buscar(int id, CancellationToken cancellationToken = default)
+    public async Task<ComprasDto> Buscar(int id, CancellationToken cancellationToken = default)
     {
         await using var contexto = await DbFactory.CreateDbContextAsync(cancellationToken);
-        var cliente = await contexto.Clientes
+        var cliente = await contexto.Compras
             .Where(e => e.CompraId == id)
-            .Select(p => new ClientesDto()
+            .Select(p => new ComprasDto()
             {
                 CompraId = p.CompraId,
                 Descripcion = p.Descripcion,
                 Monto = p.Monto
             }).FirstOrDefaultAsync(cancellationToken);
 
-        return cliente ?? new ClientesDto();
+        return cliente ?? new ComprasDto();
     }
 
-    public async Task<List<ClientesDto>> Listar(Expression<Func<ClientesDto, bool>> criterio, CancellationToken cancellationToken = default)
+    public async Task<List<ComprasDto>> Listar(Expression<Func<ComprasDto, bool>> criterio, CancellationToken cancellationToken = default)
     {
         await using var contexto = await DbFactory.CreateDbContextAsync(cancellationToken);
-        return await contexto.Clientes
-            .Select(p => new ClientesDto()
+        return await contexto.Compras
+            .Select(p => new ComprasDto()
             {
                 CompraId = p.CompraId,
                 Descripcion = p.Descripcion,
@@ -95,7 +95,7 @@ public class ClientesService(IDbContextFactory<TecnicosContext> DbFactory) : ICl
     public async Task<bool> ExisteCliente(int id, string descripcion, double monto, CancellationToken cancellationToken = default)
     {
         await using var contexto = await DbFactory.CreateDbContextAsync(cancellationToken);
-        return await contexto.Clientes
+        return await contexto.Compras
             .AnyAsync(e => e.CompraId != id
             && e.Descripcion.ToLower().Equals(descripcion.ToLower())
             || e.Monto == monto, cancellationToken);

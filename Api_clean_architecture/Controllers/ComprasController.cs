@@ -9,15 +9,15 @@ namespace Api_clean_architecture.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClientesController(IClientesService clientesService) : ControllerBase
+    public class ComprasController(IComprasService comprasService) : ControllerBase
     {
-        // GET: api/Clientes
+        // GET: api/Compras
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ClientesDto>>> GetClientes()
+        public async Task<ActionResult<IEnumerable<ComprasDto>>> GetCompras()
         {
             try
             {
-                return await clientesService.Listar(p => true, HttpContext.RequestAborted);
+                return await comprasService.Listar(p => true, HttpContext.RequestAborted);
             }
             catch (TaskCanceledException)
             {
@@ -29,13 +29,13 @@ namespace Api_clean_architecture.Controllers
             }
         }
 
-        // GET: api/Clientes/5
+        // GET: api/Compras/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ClientesDto>> GetClientes(int id)
+        public async Task<ActionResult<ComprasDto>> GetCompras(int id)
         {
             try
             {
-                return await clientesService.Buscar(id, HttpContext.RequestAborted);
+                return await comprasService.Buscar(id, HttpContext.RequestAborted);
             }
             catch (TaskCanceledException)
             {
@@ -47,18 +47,18 @@ namespace Api_clean_architecture.Controllers
             }
         }
 
-        // PUT: api/Clientes/5
+        // PUT: api/Compras/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutClientes(int id, ClientesDto clientesDto)
+        public async Task<IActionResult> PutCompras(int id, ComprasDto comprasDto)
         {
             try
             {
-                if (id != clientesDto.CompraId)
+                if (id != comprasDto.CompraId)
                 {
                     return BadRequest();
                 }
-                await clientesService.Guardar(clientesDto, HttpContext.RequestAborted);
+                await comprasService.Guardar(comprasDto, HttpContext.RequestAborted);
                 return NoContent();
             }
             catch (TaskCanceledException)
@@ -71,15 +71,15 @@ namespace Api_clean_architecture.Controllers
             }
         }
 
-        // POST: api/Clientes
+        // POST: api/Compras
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Clientes>> PostClientes(ClientesDto clienteDto)
+        public async Task<ActionResult<Compras>> PostCompras(ComprasDto compraDto)
         {
             try
             {
-                await clientesService.Guardar(clienteDto, HttpContext.RequestAborted);
-                return CreatedAtAction("GetClientes", new { id = clienteDto.CompraId }, clienteDto);
+                await comprasService.Guardar(compraDto, HttpContext.RequestAborted);
+                return CreatedAtAction("GetCompras", new { id = compraDto.CompraId }, compraDto);
             }
             catch (TaskCanceledException)
             {
@@ -91,13 +91,13 @@ namespace Api_clean_architecture.Controllers
             }
         }
 
-        // DELETE: api/Clientes/5
+        // DELETE: api/Compras/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteClientes(int id)
+        public async Task<IActionResult> DeleteCompras(int id)
         {
             try
             {
-                await clientesService.Eliminar(id, HttpContext.RequestAborted);
+                await comprasService.Eliminar(id, HttpContext.RequestAborted);
                 return NoContent();
             }
             catch (TaskCanceledException)
